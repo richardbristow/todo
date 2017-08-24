@@ -1,0 +1,68 @@
+@import 'variables';
+
+.todo-item {
+  border-bottom: 2px solid lighten($text, 65%);
+
+  &:hover {
+    border-color: lighten($text, 55%);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+
+  &:hover > .item-delete {
+    background: lighten($text, 55%);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+
+    .fa-circle-o {
+      color: lighten($text, 65%);
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+    }
+  } //this
+
+  span {
+    font-size: 16px;
+    color: $text;
+  }
+
+  .item-delete {
+    background: lighten($text, 65%);
+    border: 0;
+    border-radius: 4px 4px 0 0;
+    margin-right: 15px;
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($text, 55%);
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+    }
+
+    .fa-circle-o {
+      font-size: 16px;
+      color: lighten($text, 55%);
+    }
+
+    .fa-check-circle-o {
+      color: $text;
+      font-size: 16px;
+      display: none;
+    }
+
+    &:hover > .fa-circle-o {
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+      display: none;
+    }
+
+    &:hover > .fa-check-circle-o {
+      display: block;
+    }
+  }
+}
+
+li {
+  padding: 15px 0;
+}

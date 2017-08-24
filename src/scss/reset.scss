@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import 'variables';
+
+body {
+  font-family: Roboto, sans-serif, serif;
+  margin-bottom: 0;
+  background: $backgroundColor;
+}
+
+li {
+  list-style: none;
+}
+
+body,
+fieldset,
+form,
+html,
+legend,
+li,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}

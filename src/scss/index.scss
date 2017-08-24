@@ -1,0 +1,44 @@
+@import 'reset';
+@import 'variables';
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.flex-item {
+  margin-bottom: 40px;
+}
+
+.title {
+  h1 {
+    font-size: 50px;
+    color: $text;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 0;
+    text-shadow: 2px 4px 3px $textShadow;
+  }
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // padding: 5px;
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
+
+  p {
+    font-size: 12px;
+    color: lighten($text, 65%);
+  }
+}
