@@ -159,7 +159,7 @@ class Todo extends React.Component {
           <div className="flex-item footer">
             <p>A simple Todo app made with React.</p>
             <p>It&#39;s ok to close the browser, all items will be saved locally.</p>
-            <p>If you use Private browsing or Icognito mode, the app will be
+            <p>If you use Private browsing or Incognito mode, the app will be
               unable to save changes.</p>
           </div>
         </div>
