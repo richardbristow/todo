@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 
 // Module imports
+import registerServiceWorker from './registerServiceWorker';
 import TodoItem from './TodoItem';
 import AddItem from './AddItem';
 
@@ -172,3 +173,4 @@ ReactDOM.render(
   <Todo />,
   document.getElementById('root')
 );
+registerServiceWorker();
