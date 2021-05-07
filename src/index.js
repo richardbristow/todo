@@ -12,7 +12,8 @@ import AddItem from './AddItem';
 const Todo = () => {
   const [todoItems, setTodoItems] = useState([]);
 
-  const loadFromStorage = () => {
+  useEffect(() => {
+    // Load from storage
     if (typeof Storage !== 'undefined') {
       // localStorage supported.
       const todos = JSON.parse(localStorage.getItem('todoItems'));
@@ -35,9 +36,10 @@ const Todo = () => {
         setTodoItems(decodedTodos);
       }
     }
-  };
+  }, []);
 
-  const saveToStorage = () => {
+  useEffect(() => {
+    // save to storage
     if (typeof Storage !== 'undefined') {
       // localStorage supported.
       localStorage.setItem('todoItems', JSON.stringify(todoItems));
@@ -48,14 +50,6 @@ const Todo = () => {
         document.cookie = `${item.identifierKey}=${item.todo}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
       });
     }
-  };
-
-  useEffect(() => {
-    loadFromStorage();
-  }, []);
-
-  useEffect(() => {
-    saveToStorage();
   }, [todoItems]);
 
   const addItem = (item) => {
