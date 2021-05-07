@@ -69,23 +69,6 @@ const Todo = () => {
     setTodoItems(todos);
   };
 
-  const renderTodoItems = () => {
-    let todos = todoItems;
-    todos = todos.map((item) => {
-      console.log('render loop', item);
-      return (
-        <TodoItem
-          item={item}
-          key={item.identifierKey}
-          deleteItem={deleteItem}
-        />
-      );
-    });
-    return todos;
-  };
-
-  console.log('todoItems before render: ', todoItems);
-
   return (
     <div className="wrapper">
       <div className="flex-container">
@@ -96,7 +79,15 @@ const Todo = () => {
           <AddItem addItem={addItem} />
         </div>
         <div className="flex-item todo-list">
-          <ul>{renderTodoItems()}</ul>
+          <ul>
+            {todoItems.map((item) => (
+              <TodoItem
+                item={item}
+                key={item.identifierKey}
+                deleteItem={deleteItem}
+              />
+            ))}
+          </ul>
         </div>
         <div className="flex-item footer">
           <p>A simple Todo app made with React.</p>
