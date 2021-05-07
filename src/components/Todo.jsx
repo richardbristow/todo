@@ -69,7 +69,7 @@ const Todo = () => {
         todos.forEach((item) => {
           const splitItem = item.split('=');
           decodedTodos.push({
-            identifierKey: splitItem[0],
+            date: splitItem[0],
             todo: splitItem[1],
           });
         });
@@ -87,19 +87,19 @@ const Todo = () => {
       // Using cookies here :(
       const todos = todoItems;
       todos.forEach((item) => {
-        document.cookie = `${item.identifierKey}=${item.todo}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+        document.cookie = `${item.date}=${item.todo}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
       });
     }
   }, [todoItems]);
 
   const addItem = (item) => {
     const todos = todoItems;
-    todos.push({ todo: item, identifierKey: `task-${new Date().getTime()}` });
+    todos.push({ todo: item, date: new Date().getTime() });
     setTodoItems([...todos]);
   };
 
   const deleteItem = (item) => {
-    const todos = todoItems.filter((val) => item !== val);
+    const todos = todoItems.filter((todoItem) => item !== todoItem);
     setTodoItems(todos);
   };
 
@@ -109,13 +109,11 @@ const Todo = () => {
       <AddItem addItem={addItem} />
       <StyledTodoList>
         <ul>
-          {todoItems.map((item) => (
-            <TodoItem
-              item={item}
-              key={item.identifierKey}
-              deleteItem={deleteItem}
-            />
-          ))}
+          {todoItems
+            .sort((a, b) => a.date - b.date)
+            .map((item) => (
+              <TodoItem item={item} key={item.date} deleteItem={deleteItem} />
+            ))}
         </ul>
       </StyledTodoList>
       <StyledFooter>
