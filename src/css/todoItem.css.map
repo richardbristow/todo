@@ -1,1 +1,0 @@
-{"version":3,"sourceRoot":"","sources":["../scss/todoItem.scss","../scss/variables.scss"],"names":[],"mappings":"AAEA;EACE;;AAEA;EACE;EACA;EACA;;AAGF;EACE;EACA;EACA;;AAEA;EACE;EACA;EACA;;AAIJ;EACE;EACA,OCvBG;;AD0BL;EACE;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE;EACA;EACA;;AAGF;EACE;EACA;;AAGF;EACE,OC9CC;ED+CD;EACA;;AAGF;EACE;EACA;EACA;;AAGF;EACE;;;AAKN;EACE","file":"todoItem.css"}

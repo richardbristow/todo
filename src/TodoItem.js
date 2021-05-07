@@ -1,19 +1,94 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import './css/todoItem.css';
+import PropTypes from 'prop-types';
+import styled from 'styled-components/macro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+
+const StyledTodoItem = styled.li`
+  padding: 15px 0;
+
+  div {
+    border-bottom: 2px solid #d3d7dd;
+
+    &:hover {
+      border-color: #b6bdc7;
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+
+      button {
+        background: #b6bdc7;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+      }
+
+      .fa-circle {
+        color: #d3d7dd;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+      }
+    }
+
+    span {
+      font-size: 16px;
+      color: #2c3139;
+    }
+
+    button {
+      background: #d3d7dd;
+      border: 0;
+      border-radius: 4px 4px 0 0;
+      margin-right: 15px;
+      padding: 10px;
+      cursor: pointer;
+
+      .fa-circle {
+        font-size: 16px;
+        color: #b6bdc7;
+      }
+
+      .fa-check-circle {
+        color: #2c3139;
+        font-size: 16px;
+        display: none;
+      }
+
+      &:hover {
+        background: #b6bdc7;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+
+        .fa-circle {
+          -webkit-transition: 0.3s;
+          transition: 0.3s;
+          display: none;
+        }
+
+        .fa-check-circle {
+          display: inline-block;
+        }
+      }
+    }
+  }
+`;
 
 const TodoItem = ({ deleteItem, item }) => (
-  <li>
-    <div className="todo-item">
-      <button className="item-delete" onClick={() => deleteItem(item)}>
-        <i className="fa fa-circle-o" aria-hidden="true" />
-        <i className="fa fa-check-circle-o" aria-hidden="true" />
+  <StyledTodoItem>
+    <div>
+      <button type="button" onClick={() => deleteItem(item)}>
+        <FontAwesomeIcon className="fa-circle" icon={faCircle} />
+        <FontAwesomeIcon className="fa-check-circle" icon={faCheckCircle} />
       </button>
-      <span className="item-name">{item.todo}</span>
+      <span>{item.todo}</span>
     </div>
-  </li>
+  </StyledTodoItem>
 );
+
+TodoItem.propTypes = {
+  deleteItem: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    identifierKey: PropTypes.string,
+    todo: PropTypes.string,
+  }).isRequired,
+};
 
 export default TodoItem;
