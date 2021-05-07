@@ -19,7 +19,6 @@ const StyledTodo = styled.div`
     color: ${({ theme }) => theme.darkestGrey};
     text-align: center;
     padding: 10px;
-    margin-bottom: 0;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
     margin-top: 0;
     margin-bottom: 40px;

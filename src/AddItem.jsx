@@ -8,8 +8,25 @@ const StyledAddItem = styled.form`
   display: flex;
   margin-bottom: 40px;
 
+  button {
+    margin: 0;
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: 10px 15px;
+    background: ${({ theme }) => theme.lightGrey};
+    border: 0;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    outline: none;
+    transition: 0.5s;
+
+    .fa-plus {
+      color: ${({ theme }) => theme.darkestGrey};
+      font-size: 18px;
+    }
+  }
+
   input {
-    -webkit-transition: 0.5s;
     transition: 0.5s;
     margin: 0;
     flex-basis: 0;
@@ -26,25 +43,6 @@ const StyledAddItem = styled.form`
       & ~ button {
         background-color: ${({ theme }) => theme.darkerGrey};
       }
-    }
-  }
-
-  button {
-    margin: 0;
-    flex-basis: 0;
-    flex-grow: 1;
-    padding: 10px 15px;
-    background: ${({ theme }) => theme.lightGrey};
-    border: 0;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-    outline: none;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-
-    .fa-plus {
-      color: ${({ theme }) => theme.darkestGrey};
-      font-size: 18px;
     }
   }
 `;
