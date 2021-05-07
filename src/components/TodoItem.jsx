@@ -45,9 +45,12 @@ const StyledTodoItem = styled.li`
   span {
     font-size: 16px;
     color: ${({ theme }) => theme.darkestGrey};
+    align-self: center;
   }
 
   div {
+    display: flex;
+    flex-direction: row;
     border-bottom: 2px solid ${({ theme }) => theme.lightGrey};
 
     &:hover {
