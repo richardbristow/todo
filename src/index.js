@@ -1,63 +1,23 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-undef */
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 
-// Module imports
-import registerServiceWorker from './registerServiceWorker';
 import TodoItem from './TodoItem';
 import AddItem from './AddItem';
 
-class Todo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todoItems: [],
-    };
-    this.renderTodoItems = this.renderTodoItems.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.addItem = this.addItem.bind(this);
-    this.loadFromStorage = this.loadFromStorage.bind(this);
-    this.saveToStorage = this.saveToStorage.bind(this);
-    // this.testLocalStoreEnabled = this.testLocalStoreEnabled.bind(this);
-  }
+const Todo = () => {
+  const [todoItems, setTodoItems] = useState([]);
 
-
-  componentDidMount() {
-    this.loadFromStorage();
-  }
-
-
-  componentDidUpdate() {
-    this.saveToStorage();
-  }
-
-
-  // Checks whether localStorage can be saved to.
-  // When using Safari in Private Browsing mode and saving
-  // user gets the error 'Quota Exceeded'.
-  // testLocalStoreEnabled() {
-  //   try {
-  //     localStorage.setItem('testKey', 'testValue');
-  //     localStorage.removeItem('testKey');
-  //     return true;
-  //   } catch (e) {
-  //     return false;
-  //   }
-  // }
-
-
-  /**
-   * Loads the state from localStorage if available.
-   * If not available load from cookes.
-   */
-  loadFromStorage() {
-    if (typeof (Storage) !== 'undefined') {
+  const loadFromStorage = () => {
+    if (typeof Storage !== 'undefined') {
       // localStorage supported.
       const todos = JSON.parse(localStorage.getItem('todoItems'));
       if (todos) {
-        this.setState({
-          todoItems: todos,
-        });
+        setTodoItems(todos);
       }
     } else {
       // Using cookies here :(
@@ -67,110 +27,90 @@ class Todo extends React.Component {
         const decodedTodos = [];
         todos.forEach((item) => {
           const splitItem = item.split('=');
-          decodedTodos.push(
-            {
-              identifierKey: splitItem[0],
-              todo: splitItem[1],
-            },
-          );
+          decodedTodos.push({
+            identifierKey: splitItem[0],
+            todo: splitItem[1],
+          });
         });
-        this.setState({
-          todoItems: decodedTodos,
-        });
+        setTodoItems(decodedTodos);
       }
     }
-  }
+  };
 
-
-  /**
-   * Saves the state to localStorage if available.
-   * If not available save to cookes.
-   */
-  saveToStorage() {
-    if (typeof (Storage) !== 'undefined') {
+  const saveToStorage = () => {
+    if (typeof Storage !== 'undefined') {
       // localStorage supported.
-      localStorage.setItem('todoItems', JSON.stringify(this.state.todoItems));
+      localStorage.setItem('todoItems', JSON.stringify(todoItems));
     } else {
       // Using cookies here :(
-      const todos = this.state.todoItems;
+      const todos = todoItems;
       todos.forEach((item) => {
         document.cookie = `${item.identifierKey}=${item.todo}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
       });
     }
-  }
+  };
 
+  useEffect(() => {
+    loadFromStorage();
+  }, []);
 
-  /**
-   * Adds a todo item to the state.
-   * @param {object} item todo item to add
-   */
-  addItem(item) {
-    const todos = this.state.todoItems;
-    todos.push({ todo: item, identifierKey: `task${(todos.length)}` });
-    this.setState({
-      todoItems: todos,
-    });
-  }
+  useEffect(() => {
+    saveToStorage();
+  }, [todoItems]);
 
+  const addItem = (item) => {
+    const todos = todoItems;
+    todos.push({ todo: item, identifierKey: `task${todos.length}` });
+    setTodoItems([...todos]);
+  };
 
-  /**
-   * Deletes a todo item from the state
-   * @param {object} item todo item to delete
-   */
-  deleteItem(item) {
-    const todos = this.state.todoItems.filter((val) => {
-      return item !== val;
-    });
-    this.setState({
-      todoItems: todos,
-    });
-  }
+  const deleteItem = (item) => {
+    const todos = todoItems.filter((val) => item !== val);
+    setTodoItems(todos);
+  };
 
-
-  /**
-   * Calls <TodoItem /> on each todo in the state for rendering
-   * @return {object} the todos to render
-   */
-  renderTodoItems() {
-    let todos = this.state.todoItems;
+  const renderTodoItems = () => {
+    let todos = todoItems;
     todos = todos.map((item) => {
+      console.log('render loop', item);
       return (
-        <TodoItem item={item} key={item.identifierKey} deleteItem={this.deleteItem} />
+        <TodoItem
+          item={item}
+          key={item.identifierKey}
+          deleteItem={deleteItem}
+        />
       );
     });
     return todos;
-  }
+  };
 
+  console.log('todoItems before render: ', todoItems);
 
-  render() {
-    return (
-      <div className="wrapper">
-        <div className="flex-container">
-          <div className="flex-item title">
-            <h1>Todo List</h1>
-          </div>
-          <div className="flex-item todo-list">
-            <ul>
-              {this.renderTodoItems()}
-            </ul>
-          </div>
-          <div className="flex-item add-item-form">
-            <AddItem addItem={this.addItem} />
-          </div>
-          <div className="flex-item footer">
-            <p>A simple Todo app made with React.</p>
-            <p>It&#39;s ok to close the browser, all items will be saved locally.</p>
-            <p>If you use Private browsing or Incognito mode, the app will be
-              unable to save changes.</p>
-          </div>
+  return (
+    <div className="wrapper">
+      <div className="flex-container">
+        <div className="flex-item title">
+          <h1>todos.</h1>
+        </div>
+        <div className="flex-item add-item-form">
+          <AddItem addItem={addItem} />
+        </div>
+        <div className="flex-item todo-list">
+          <ul>{renderTodoItems()}</ul>
+        </div>
+        <div className="flex-item footer">
+          <p>A simple Todo app made with React.</p>
+          <p>
+            It&#39;s ok to close the browser, all items will be saved locally.
+          </p>
+          <p>
+            If you use Private browsing or Incognito mode, the app will be
+            unable to save changes.
+          </p>
         </div>
       </div>
-    );
-  } // end of render
-}
+    </div>
+  );
+};
 
-ReactDOM.render(
-  <Todo />,
-  document.getElementById('root')
-);
-registerServiceWorker();
+ReactDOM.render(<Todo />, document.getElementById('root'));
