@@ -1,8 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import './css/index.css';
+import styled from 'styled-components/macro';
 
 import TodoItem from './TodoItem';
 import AddItem from './AddItem';
+
+const StyledTodo = styled.div`
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+
+  h1 {
+    font-size: 50px;
+    color: ${({ theme }) => theme.darkestGrey};
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 0;
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
+`;
+
+const StyledTodoList = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+const StyledFooter = styled.div`
+  margin-bottom: 40px;
+  margin-top: 20px;
+  text-align: center;
+
+  p {
+    font-size: 12px;
+    color: ${({ theme }) => theme.lightGrey};
+  }
+`;
 
 const Todo = () => {
   const [todoItems, setTodoItems] = useState([]);
@@ -59,37 +105,31 @@ const Todo = () => {
   };
 
   return (
-    <div className="wrapper">
-      <div className="flex-container">
-        <div className="flex-item title">
-          <h1>todos.</h1>
-        </div>
-        <div className="flex-item add-item-form">
-          <AddItem addItem={addItem} />
-        </div>
-        <div className="flex-item todo-list">
-          <ul>
-            {todoItems.map((item) => (
-              <TodoItem
-                item={item}
-                key={item.identifierKey}
-                deleteItem={deleteItem}
-              />
-            ))}
-          </ul>
-        </div>
-        <div className="flex-item footer">
-          <p>A simple Todo app made with React.</p>
-          <p>
-            It&#39;s ok to close the browser, all items will be saved locally.
-          </p>
-          <p>
-            If you use Private browsing or Incognito mode, the app will be
-            unable to save changes.
-          </p>
-        </div>
-      </div>
-    </div>
+    <StyledTodo className="wrapper">
+      <h1>todos.</h1>
+      <AddItem addItem={addItem} />
+      <StyledTodoList>
+        <ul>
+          {todoItems.map((item) => (
+            <TodoItem
+              item={item}
+              key={item.identifierKey}
+              deleteItem={deleteItem}
+            />
+          ))}
+        </ul>
+      </StyledTodoList>
+      <StyledFooter>
+        <p>A simple Todo app made with React.</p>
+        <p>
+          It&#39;s ok to close the browser, all items will be saved locally.
+        </p>
+        <p>
+          If you use Private browsing or Incognito mode, the app will be unable
+          to save changes.
+        </p>
+      </StyledFooter>
+    </StyledTodo>
   );
 };
 

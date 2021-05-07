@@ -6,23 +6,24 @@ import { faCircle, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 const StyledTodoItem = styled.li`
   padding: 15px 0;
+  list-style: none;
 
   div {
-    border-bottom: 2px solid #d3d7dd;
+    border-bottom: 2px solid ${({ theme }) => theme.lightGrey};
 
     &:hover {
-      border-color: #b6bdc7;
+      border-color: ${({ theme }) => theme.darkerGrey};
       -webkit-transition: 0.3s;
       transition: 0.3s;
 
       button {
-        background: #b6bdc7;
+        background: ${({ theme }) => theme.darkerGrey};
         -webkit-transition: 0.3s;
         transition: 0.3s;
       }
 
       .fa-circle {
-        color: #d3d7dd;
+        color: ${({ theme }) => theme.lightGrey};
         -webkit-transition: 0.3s;
         transition: 0.3s;
       }
@@ -30,11 +31,11 @@ const StyledTodoItem = styled.li`
 
     span {
       font-size: 16px;
-      color: #2c3139;
+      color: ${({ theme }) => theme.darkestGrey};
     }
 
     button {
-      background: #d3d7dd;
+      background: ${({ theme }) => theme.lightGrey};
       border: 0;
       border-radius: 4px 4px 0 0;
       margin-right: 15px;
@@ -43,17 +44,17 @@ const StyledTodoItem = styled.li`
 
       .fa-circle {
         font-size: 16px;
-        color: #b6bdc7;
+        color: ${({ theme }) => theme.darkerGrey};
       }
 
       .fa-check-circle {
-        color: #2c3139;
+        color: ${({ theme }) => theme.darkestGrey};
         font-size: 16px;
         display: none;
       }
 
       &:hover {
-        background: #b6bdc7;
+        background: ${({ theme }) => theme.darkerGrey};
         -webkit-transition: 0.3s;
         transition: 0.3s;
 

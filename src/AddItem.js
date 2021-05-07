@@ -6,6 +6,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const StyledAddItem = styled.form`
   display: flex;
+  margin-bottom: 40px;
 
   input {
     -webkit-transition: 0.5s;
@@ -16,14 +17,14 @@ const StyledAddItem = styled.form`
     padding: 10px 15px;
     font-size: 16px;
     outline: none;
-    border: 3px solid #d3d7dd;
+    border: 3px solid ${({ theme }) => theme.lightGrey};
     border-radius: 4px 0 0 4px;
 
     &:focus {
-      border: 3px solid #b6bdc7;
+      border: 3px solid ${({ theme }) => theme.darkerGrey};
 
       & ~ button {
-        background-color: #b6bdc7;
+        background-color: ${({ theme }) => theme.darkerGrey};
       }
     }
   }
@@ -33,7 +34,7 @@ const StyledAddItem = styled.form`
     flex-basis: 0;
     flex-grow: 1;
     padding: 10px 15px;
-    background: #d3d7dd;
+    background: ${({ theme }) => theme.lightGrey};
     border: 0;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
@@ -42,7 +43,7 @@ const StyledAddItem = styled.form`
     transition: 0.5s;
 
     .fa-plus {
-      color: #2c3139;
+      color: ${({ theme }) => theme.darkestGrey};
       font-size: 18px;
     }
   }
