@@ -94,7 +94,7 @@ const Todo = () => {
 
   const addItem = (item) => {
     const todos = todoItems;
-    todos.push({ todo: item, identifierKey: `task${todos.length}` });
+    todos.push({ todo: item, identifierKey: `task-${new Date().getTime()}` });
     setTodoItems([...todos]);
   };
 
