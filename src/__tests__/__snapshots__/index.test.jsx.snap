@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without throwing errors 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Todo__StyledTodo-sc-1du706c-0 jwtxBv wrapper"
+      >
+        <h1>
+          todos.
+        </h1>
+        <form
+          class="AddItem__StyledAddItem-i6dyxz-0 FBTuS"
+        >
+          <input
+            placeholder="New todo..."
+            required=""
+            type="text"
+            value=""
+          />
+          <button
+            type="submit"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-w-14 fa-plus"
+              data-icon="plus"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </form>
+        <div
+          class="Todo__StyledTodoList-sc-1du706c-1 kdASZR"
+        >
+          <ul />
+        </div>
+        <div
+          class="Todo__StyledFooter-sc-1du706c-2 cmQaKL"
+        >
+          <p>
+            A simple Todo app made with React.
+          </p>
+          <p>
+            It's ok to close the browser, all items will be saved locally.
+          </p>
+          <p>
+            If you use Private browsing or Incognito mode, the app will be unable to save changes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Todo__StyledTodo-sc-1du706c-0 jwtxBv wrapper"
+    >
+      <h1>
+        todos.
+      </h1>
+      <form
+        class="AddItem__StyledAddItem-i6dyxz-0 FBTuS"
+      >
+        <input
+          placeholder="New todo..."
+          required=""
+          type="text"
+          value=""
+        />
+        <button
+          type="submit"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-w-14 fa-plus"
+            data-icon="plus"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </form>
+      <div
+        class="Todo__StyledTodoList-sc-1du706c-1 kdASZR"
+      >
+        <ul />
+      </div>
+      <div
+        class="Todo__StyledFooter-sc-1du706c-2 cmQaKL"
+      >
+        <p>
+          A simple Todo app made with React.
+        </p>
+        <p>
+          It's ok to close the browser, all items will be saved locally.
+        </p>
+        <p>
+          If you use Private browsing or Incognito mode, the app will be unable to save changes.
+        </p>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
