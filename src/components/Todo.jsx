@@ -104,10 +104,10 @@ const Todo = () => {
   };
 
   const editItem = (item, value) => {
-    const editTodo = todoItems.filter((todoItem) => item === todoItem)[0];
-    const todos = todoItems.filter((todoItem) => item !== todoItem);
+    const todos = todoItems;
+    const editTodo = todos.find((todoItem) => todoItem.date === item.date);
     editTodo.todo = value;
-    setTodoItems([...todos, editTodo]);
+    setTodoItems([...todos]);
   };
 
   return (
@@ -117,7 +117,7 @@ const Todo = () => {
       <StyledTodoList>
         <ul>
           {todoItems
-            .sort((a, b) => a.date - b.date)
+            .sort((a, b) => b.date - a.date)
             .map((item) => (
               <TodoItem
                 item={item}
