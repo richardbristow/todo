@@ -1,0 +1,54 @@
+name: Lint, test, build, deploy
+
+on: [push, pull_request]
+
+jobs:
+  lint_test_build:
+    name: Node ${{ matrix.node }} - lint, test, build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14, 16]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node --version
+      - run: npm --version
+      - run: npm install
+      - run: npm run lint
+      - name: npm test
+        env:
+          CI: true
+        run: npm test --coverage
+      - run: npm run build
+
+  deploy_netlify:
+    name: deploy to netlify
+    runs-on: ubuntu-latest
+    needs: lint_test_build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          version: 14.x
+      - run: node --version
+      - run: npm --version
+      - run: netlify --version
+      - run: npm install
+      - run: npm run build
+      - name: 'PROD: deploy to netlify'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: netlify deploy --dir=build --prod
+      - name: 'DEV: deploy to netlify'
+        if: github.event_name == 'push' && github.ref != 'refs/heads/master'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: netlify deploy --dir=build
