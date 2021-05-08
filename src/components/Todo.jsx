@@ -103,6 +103,13 @@ const Todo = () => {
     setTodoItems(todos);
   };
 
+  const editItem = (item, value) => {
+    const editTodo = todoItems.filter((todoItem) => item === todoItem)[0];
+    const todos = todoItems.filter((todoItem) => item !== todoItem);
+    editTodo.todo = value;
+    setTodoItems([...todos, editTodo]);
+  };
+
   return (
     <StyledTodo className="wrapper">
       <h1>todos.</h1>
@@ -112,7 +119,12 @@ const Todo = () => {
           {todoItems
             .sort((a, b) => a.date - b.date)
             .map((item) => (
-              <TodoItem item={item} key={item.date} deleteItem={deleteItem} />
+              <TodoItem
+                item={item}
+                key={item.date}
+                deleteItem={deleteItem}
+                editItem={editItem}
+              />
             ))}
         </ul>
       </StyledTodoList>

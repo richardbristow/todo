@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce';
 import styled from 'styled-components/macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
@@ -42,10 +43,14 @@ const StyledTodoItem = styled.li`
     }
   }
 
-  span {
+  input {
     font-size: 16px;
     color: ${({ theme }) => theme.darkestGrey};
     align-self: center;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: ${({ theme }) => theme.backgroundColor};
   }
 
   div {
@@ -70,20 +75,44 @@ const StyledTodoItem = styled.li`
   }
 `;
 
-const TodoItem = ({ deleteItem, item }) => (
-  <StyledTodoItem>
-    <div>
-      <button type="button" onClick={() => deleteItem(item)}>
-        <FontAwesomeIcon className="fa-circle" icon={faCircle} />
-        <FontAwesomeIcon className="fa-check-circle" icon={faCheckCircle} />
-      </button>
-      <span>{item.todo}</span>
-    </div>
-  </StyledTodoItem>
-);
+const TodoItem = ({ deleteItem, item, editItem }) => {
+  const [value, setValue] = useState(item.todo || '');
+
+  const editHandler = useCallback(
+    debounce(async (originalItem, editedItemValue) => {
+      await editItem(originalItem, editedItemValue);
+    }, 500),
+    [],
+  );
+
+  useEffect(() => {
+    if (value !== item.todo) {
+      editHandler(item, value);
+    }
+  }, [item, value]);
+
+  return (
+    <StyledTodoItem>
+      <div>
+        <button type="button" onClick={() => deleteItem(item)}>
+          <FontAwesomeIcon className="fa-circle" icon={faCircle} />
+          <FontAwesomeIcon className="fa-check-circle" icon={faCheckCircle} />
+        </button>
+        <input
+          value={value}
+          onChange={(event) => {
+            setValue(event.target.value);
+            editHandler();
+          }}
+        />
+      </div>
+    </StyledTodoItem>
+  );
+};
 
 TodoItem.propTypes = {
   deleteItem: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
   item: PropTypes.shape({
     identifierKey: PropTypes.string,
     todo: PropTypes.string,
