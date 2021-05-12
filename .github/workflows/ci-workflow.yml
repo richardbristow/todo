@@ -29,7 +29,7 @@ jobs:
     name: deploy to netlify
     runs-on: ubuntu-latest
     needs: lint_test_build
-    if: github.event_name != 'pull_request'
+    if: github.event_name = 'pull_request'
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14.x
@@ -48,7 +48,7 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: netlify deploy --dir=build --prod
       - name: 'DEV: deploy to netlify'
-        if: github.ref != 'refs/heads/develop'
+        if: github.ref == 'refs/heads/develop'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
